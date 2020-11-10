@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Lab 6 - Javascript 2</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="js/jquery-3.4.1.slim.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="./js/script.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="row justify-content-md-center">
+			<div class="col-md-4">
+				<h1 class="text-center">Calculator</h1>
+				<hr>
+				<form name="calculator" onsubmit="return calculate();">
+					<div class="row">
+						<input type="text" class="form-control" name="equation" autocomplete="off">
+					</div>
+					<div class="row">
+						<input type="button" class="col btn btn-light" value="7">
+						<input type="button" class="col btn btn-light" value="8">
+						<input type="button" class="col btn btn-light" value="9">
+						<input type="button" class="col btn btn-secondary" value="/">
+					</div>
+					<div class="row">
+						<input type="button" class="col btn btn-light" value="4">
+						<input type="button" class="col btn btn-light" value="5">
+						<input type="button" class="col btn btn-light" value="6">
+						<input type="button" class="col btn btn-secondary" value="*">
+					</div>
+					<div class="row">
+						<input type="button" class="col btn btn-light" value="1">
+						<input type="button" class="col btn btn-light" value="2">
+						<input type="button" class="col btn btn-light" value="3">
+						<input type="button" class="col btn btn-secondary" value="-">
+					</div>
+					<div class="row">
+						<input type="button" class="col-6 btn btn-light" value="0">
+						<input type="button" class="col btn btn-light" value=".">
+						<input type="button" class="col btn btn-secondary" value="+">
+					</div>
+					<div class="row">
+						<input type="submit" class="col-9 btn btn-primary" value="=">
+						<input type="button" class="col btn btn-info" value="C">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
