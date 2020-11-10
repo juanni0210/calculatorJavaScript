@@ -5,6 +5,7 @@ let num2;
 let operator;
 let result;
 let isSecondNum;
+let newCalculation;
 
 window.onload = function () {
     btns = document.querySelectorAll(".btn");
@@ -20,6 +21,11 @@ window.onload = function () {
 function calculate() {
     let tempNum1 = parseFloat(num1);
     let tempNum2 = parseFloat(num2);
+    if(operator.length > 1) {
+        displayText.value = "Error";
+        resetData();
+        return false;
+    }
 
     switch (operator) {
         case '+':
@@ -42,6 +48,11 @@ function calculate() {
 
 
 function handleCalculate(e) {
+    
+    if(newCalculation) {
+        clearUI();
+        newCalculation = false;
+    }
 
     let eventTargetObject = e.target;
     let btnLabel = eventTargetObject.value;
@@ -62,7 +73,7 @@ function handleCalculate(e) {
             num2 += btnLabel;
         }
     } else {
-        operator = btnLabel;
+        operator += btnLabel;
         isSecondNum = true;
     }
 
@@ -74,6 +85,7 @@ function resetData() {
     num2 = '';
     operator = '';
     isSecondNum = false;
+    newCalculation = true;
 }
 
 function clearUI() {
