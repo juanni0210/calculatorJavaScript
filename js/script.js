@@ -47,6 +47,8 @@ let calculator = {
                 this.left += keyString;
                 break;
             case keyTypes.op:
+                if (this.left === '')
+                    this.reset('0');
                 this.op = keyString;
                 this.state = states.right;
                 break;
@@ -69,6 +71,9 @@ let calculator = {
                 this.setDisplay(keyString, updateDisplayAction.append);
                 break;
             case keyTypes.equal:
+                if (this.right === '')
+                    return;
+
                 this.reset(this.calculate().toString());
                 this.state = states.equal;
                 break;
@@ -88,9 +93,9 @@ let calculator = {
         }
     },
     calculate: function () {
-        let result;
-        let left = parseFloat(this.left);
-        let right = parseFloat(this.right);
+        let result, left, right;
+        left = parseFloat(this.left);
+        right = parseFloat(this.right);
         switch (this.op) {
             case '+':
                 result = left + right;
