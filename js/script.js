@@ -138,6 +138,8 @@ let calculator = {
                 this.op = keyString;
                 // append the operator to the display
                 this.setDisplay(keyString, updateDisplayAction.append);
+                // remember to clear the right number before we go to the right state
+                this.right = '';
                 // change the state to right, because now we already have a left side number and an operator, 
                 // we should be updating the right side now
                 this.state = states.right;
