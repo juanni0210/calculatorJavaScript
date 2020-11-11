@@ -1,7 +1,7 @@
 const states = {
     left: 'left',
     right: 'right',
-    equal: 'equal'
+    result: 'result'
 };
 
 const keyTypes = {
@@ -37,8 +37,8 @@ let calculator = {
             case states.right:
                 this.onRight(keyType, keyString);
                 break;
-            case states.equal:
-                this.onEqual(keyType, keyString);
+            case states.result:
+                this.onResult(keyType, keyString);
                 break;
         }
     },
@@ -76,6 +76,8 @@ let calculator = {
                 this.setDisplay(keyString, updateDisplayAction.append);
                 break;
             case keyTypes.op:
+                if (this.right === '')
+                    return;
                 this.left = this.calculate();
                 this.setDisplay(this.left, updateDisplayAction.set);
                 this.op = keyString;
@@ -87,11 +89,11 @@ let calculator = {
                     return;
 
                 this.reset(this.calculate().toString());
-                this.state = states.equal;
+                this.state = states.result;
                 break;
         }
     },
-    onEqual: function (keyType, keyString) {
+    onResult: function (keyType, keyString) {
         switch (keyType) {
             case keyTypes.digit:
                 this.reset(keyString);
