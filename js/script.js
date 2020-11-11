@@ -5,7 +5,8 @@ const states = {
 };
 
 const keyTypes = {
-    digit: 'digit', // including dot
+    digit: 'digit',
+    point: 'point',
     op: 'op',
     equal: 'equal',
     clear: 'clear'
@@ -46,6 +47,11 @@ let calculator = {
             case keyTypes.digit:
                 this.left += keyString;
                 break;
+            case keyTypes.point:
+                if (this.left.includes('.'))
+                    return;
+                this.left += keyString;
+                break;
             case keyTypes.op:
                 if (this.left === '')
                     this.reset('0');
@@ -60,6 +66,12 @@ let calculator = {
     onRight: function (keyType, keyString) {
         switch (keyType) {
             case keyTypes.digit:
+                this.right += keyString;
+                this.setDisplay(keyString, updateDisplayAction.append);
+                break;
+            case keyTypes.point:
+                if (this.right.includes('.'))
+                    return;
                 this.right += keyString;
                 this.setDisplay(keyString, updateDisplayAction.append);
                 break;
@@ -83,6 +95,9 @@ let calculator = {
         switch (keyType) {
             case keyTypes.digit:
                 this.reset(keyString);
+                break;
+            case keyTypes.point:
+                this.reset(this.display.value + keyString);
                 break;
             case keyTypes.op:
                 this.left = this.display.value;
@@ -146,8 +161,10 @@ window.onload = function () {
 }
 
 function getKeyType(label) {
-    if (!isNaN(parseInt(label)) || label === '.')
+    if (!isNaN(parseInt(label)))
         return keyTypes.digit;
+    if (label === '.')
+        return keyTypes.point;
     if (label === '+' || label === '-' || label === '*' || label === '/')
         return keyTypes.op;
     if (label === 'C')
