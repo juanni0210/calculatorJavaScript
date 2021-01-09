@@ -7,6 +7,8 @@ let result;
 let isSecondNum;
 let newCalculation;
 
+
+
 window.onload = function () {
     btns = document.querySelectorAll(".btn");
     displayText = document.querySelector(".form-control");
